@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+$red: #d72323;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100dvw;
+  height: 100dvh;
+  background: linear-gradient(to bottom, #131313, #2c2c2c);
+  font-family: "Geist", sans-serif;
+  gap: 8rem;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 25%;
+  padding-block: 16px;
+  align-items: center;
+
+  &__left {
+    display: flex;
+    gap: 2rem;
+  }
+
+  &__logo {
+    rotate: 180deg;
+    color: $red;
+    font-size: 2rem;
+  }
+
+  &__version {
+    color: white;
+  }
+
+  &__right {
+    display: flex;
+    gap: 2rem;
+    color: aliceblue;
+  }
+}
+
+.btn {
+  display: flex;
+  position: relative;
+  align-items: center;
+  text-align: center;
+  border-radius: 0.5rem;
+  //background: #5eead4;
+  color: black;
+  height: 3rem;
+  //border: 1px dashed red;
+  cursor: pointer;
+  transform-origin: center;
+  transition: filter 0.2s ease;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+
+  &__background {
+    // ...existing code...
+    transition: transform 0.2s ease;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    color: #131313;
+    font-size: 1.2rem;
+    transition: transform 0.2s ease;
+
+    &--up,
+    &--down {
+      position: absolute;
+      top: 10px;
+      left: 26px;
+      transition: opacity 0.2s ease;
+    }
+
+    &--up {
+      opacity: 0;
+    }
+  }
+}
+
+.main {
+  width: 100dvw;
+}
+
+.content {
+  width: 100dvw;
+  display: flex;
+  justify-content: center;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  justify-content: center;
+  max-width: 620px;
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__text {
+    font-family: "Raleway", sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 700;
+
+    &__name {
+      color: $red;
+      letter-spacing: 6px;
+    }
+    &__heading {
+      color: #f1f5f9;
+      opacity: 80%;
+    }
+  }
+
+  &__subheading {
+    text-align: center;
+    color: #94a3b8;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__cta {
+    padding-inline: 16px;
+    padding-block: 8px;
+    border-radius: 0.5rem;
+    color: black;
+    background: white;
+  }
+}
+
+.squareContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.square {
+  width: 24px;
+  height: 24px;
+  background-color: red;
+}
