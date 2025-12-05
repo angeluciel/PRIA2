@@ -14,6 +14,27 @@ export default function backupPage() {
       lastExecution: "10/12/2025",
       type: "hyper-V backup",
     },
+    {
+      id: "abcd",
+      name: "Backup Job 1 | WV | DB",
+      status: "success",
+      lastExecution: "10/12/2025",
+      type: "hyper-V backup",
+    },
+    {
+      id: "abce",
+      name: "Backup Job 1 | WV | DB",
+      status: "success",
+      lastExecution: "10/12/2025",
+      type: "hyper-V backup",
+    },
+    {
+      id: "abcf",
+      name: "Backup Job 1 | WV | DB",
+      status: "success",
+      lastExecution: "10/12/2025",
+      type: "hyper-V backup",
+    },
   ];
   return (
     <div className=''>

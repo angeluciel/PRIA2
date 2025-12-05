@@ -84,13 +84,17 @@ export default function StatusCard({
       <AnimatePresence>
         {isExpanded && (
           <motion.div
-            initial={{ height: -4, opacity: 0 }}
-            animate={{ height: 320, opacity: 1 }}
-            exit={{ opacity: 0.3 }}
-            className='flex flex-col items-center justify-start h-80 overflow-y-auto overflow-x-hidden p-4'
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ opacity: 1, height: 320 }}
+            exit={{ opacity: 0.3, height: 0 }}
+            className='flex flex-col items-center justify-start gap-4 h-80 overflow-y-auto overflow-x-hidden p-4'
           >
             {jobs.map((job) => (
-              <div
+              <motion.div
+                initial={{ y: -4, opacity: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0.3 }}
+                key={job.id}
                 className={`flex justify-between items-center px-4 py-2 w-full border ${statusColor} !bg-black/5 rounded-sm`}
               >
                 <div className='flex gap-3 items-center'>
@@ -108,7 +112,7 @@ export default function StatusCard({
                   </span>
                   <span className={`font-semibold`}>Status: {job.status}</span>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         )}
