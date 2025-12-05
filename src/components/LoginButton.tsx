@@ -10,6 +10,7 @@ import {
 import { interpolate as flubberInterpolate } from "flubber";
 import styles from "@/app/index.module.scss";
 import useHoverSwap from "@/hooks/useHoverSwap";
+import { useRouter } from "next/navigation";
 
 const rightD =
   "M18 0C18 0 12 0 12 4.5C12 9 12.0001 34 12 39C11.9999 44 16 44 16 44L83 40C83 40 90 40 90 33V12C90 6 83 6 83 6L18 0Z";
@@ -24,6 +25,8 @@ export default function LoginButton() {
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const upRef = useRef<HTMLSpanElement | null>(null);
   const downRef = useRef<HTMLSpanElement | null>(null);
+
+  const router = useRouter();
 
   useHoverSwap({ triggerRef: btnRef, upRef, downRef });
 
@@ -80,7 +83,12 @@ export default function LoginButton() {
     };
   }, [progress, hovered]);
   return (
-    <motion.button type="button" className={styles.btn} ref={btnRef}>
+    <motion.button
+      type='button'
+      className={styles.btn}
+      ref={btnRef}
+      onClick={() => router.push("/session/signup")}
+    >
       <span className={styles.btn__text}>
         <span className={styles["btn__text--up"]} ref={upRef}>
           Login
@@ -92,14 +100,14 @@ export default function LoginButton() {
 
       <div className={styles.btn__background}>
         <svg
-          width="94"
-          height="44"
-          viewBox="0 0 94 44"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
+          width='94'
+          height='44'
+          viewBox='0 0 94 44'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+          preserveAspectRatio='none'
         >
-          <motion.path fill="#5EEAD4" d={d} />
+          <motion.path fill='#5EEAD4' d={d} />
         </svg>
       </div>
     </motion.button>

@@ -1,5 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+  --color-lagoon-400: #ff0000;
+
+  --font-geist: "Geist", "sans-serif";
+  --font-raleway: "Raleway", "sans-serif";
+
+  --color-background: var(--color-zinc-900);
+  --color-foreground: var(--color-zinc-200);
+
+  --color-background-warning: oklch(0.9735 0.018 89.36);
+  --color-background-error: oklch(0.9344 0.0253 17.61);
+  --color-background-success: oklch(0.9454 0.0251 149.08);
+
+  --color-foreground-warning: oklch(0.7956 0.1369 88.75);
+  --color-foreground-error: oklch(0.5613 0.2227 28.5);
+  --color-foreground-success: oklch(0.7564 0.1153 147.34);
+}
+
+@layer base {
+  body {
+    --webkit-font-smoothing: antialiased;
+    --moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+}
 
 :root {
   --background: #ffffff;
