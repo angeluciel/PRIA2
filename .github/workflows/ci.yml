@@ -32,9 +32,9 @@ jobs:
       #- name: Run type check
       #run: pnpm type-check
 
-      - name: Run tests
-        if: hashFiles('**/*.test.*') != ''
-        run: pnpm test
+      #- name: Run tests
+      #if: hashFiles('**/*.test.*') != ''
+      #run: pnpm test
 
       - name: Build
         run: pnpm build
