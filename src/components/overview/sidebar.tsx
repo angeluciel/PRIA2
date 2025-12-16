@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Database, RefreshCcw } from "lucide-react";
 import SideLink from "@/components/SidebarLink";

@@ -3,7 +3,7 @@ import StatusCard, { IJob } from "@/components/overview/statusCard";
 import StatusHeader from "@/components/overview/header";
 import { useState } from "react";
 
-export default function backupPage() {
+export default function BackupPage() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const jobList: IJob[] = [

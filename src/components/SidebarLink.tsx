@@ -8,7 +8,7 @@ interface sideLinkProps {
   to: string;
 }
 
-export default function sideLink({ children, title, to }: sideLinkProps) {
+export default function SideLink({ children, title, to }: sideLinkProps) {
   const pathname = usePathname();
   return (
     <Link
