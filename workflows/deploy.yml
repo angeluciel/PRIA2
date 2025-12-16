@@ -1,0 +1,57 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t nextjs-app${{ github.sha }} .
+          docker tag nextjs-app:${{ github.sha }} nextjs-app:latest
+
+      - name: Save docker image
+        run: docker save nextjs-app:latest | gzip > nextjs-app.tar.gz
+
+      - name: Copy image to Server
+        uses: appleboy/scp-actions@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          source: "nextjs-app.tar.gz"
+          target: "/tmp/"
+
+      - name: Deploy on Server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+          docker load < /tmp/nextjs-app.tar.gz
+
+          
+          docker stop nextjs || true
+          docker rm nextjs-app || true
+
+          docker run -d \
+              --name nextjs-app \
+              --restart unless-stopped \
+              -p 3000:3000 \
+              -e NODE_ENV=production \
+              nextjs-app:latest
+            
+            # Clean up
+            rm /tmp/nextjs-app.tar.gz
+            docker image prune -f
