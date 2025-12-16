@@ -39,19 +39,18 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-          docker load < /tmp/nextjs-app.tar.gz
+            docker load < /tmp/nextjs-app.tar.gz
 
-          
-          docker stop nextjs || true
-          docker rm nextjs-app || true
 
-          docker run -d \
+            docker stop nextjs || true
+            docker rm nextjs-app || true
+
+            docker run -d \
               --name nextjs-app \
               --restart unless-stopped \
               -p 3000:3000 \
               -e NODE_ENV=production \
               nextjs-app:latest
-            
-            # Clean up
+
             rm /tmp/nextjs-app.tar.gz
             docker image prune -f
