@@ -17,14 +17,14 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t nextjs-app${{ github.sha }} .
+          docker build -t nextjs-app:${{ github.sha }} .
           docker tag nextjs-app:${{ github.sha }} nextjs-app:latest
 
-      - name: Save docker image
+      - name: Save Docker image
         run: docker save nextjs-app:latest | gzip > nextjs-app.tar.gz
 
       - name: Copy image to Server
-        uses: appleboy/scp-actions@v0.1.7
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
@@ -39,19 +39,17 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-          docker load < /tmp/nextjs-app.tar.gz
+            docker load < /tmp/nextjs-app.tar.gz
 
-          
-          docker stop nextjs || true
-          docker rm nextjs-app || true
+            docker stop nextjs-app || true
+            docker rm nextjs-app || true
 
-          docker run -d \
+            docker run -d \
               --name nextjs-app \
               --restart unless-stopped \
               -p 3000:3000 \
               -e NODE_ENV=production \
               nextjs-app:latest
-            
-            # Clean up
+
             rm /tmp/nextjs-app.tar.gz
             docker image prune -f
