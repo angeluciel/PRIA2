@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function signup() {
+export default function SignupPage() {
   return (
     <div className='flex-center  w-dvw min-h-dvh bg-background text-foreground'>
       <Link
